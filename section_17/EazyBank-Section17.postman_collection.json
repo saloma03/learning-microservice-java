@@ -1,0 +1,518 @@
+{
+  "info": {
+    "_postman_id": "9fcd3051-2a42-47a8-bcf4-af3db938f417",
+    "name": "EazyBank Section 17 (Kubernetes)",
+    "description": "All requests go through the gateway (localhost:8072). OAuth 2.0 Client Credentials is configured once on the collection; every request inherits it. Click the collection > Authorization > Get New Access Token > Use Token.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "tokenName",
+        "value": "eazybank-cc",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "http://localhost:7080/realms/master/protocol/openid-connect/token",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "eazybank-callcenter-cc",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "cc-secret-123",
+        "type": "string"
+      },
+      {
+        "key": "scope",
+        "value": "openid email profile",
+        "type": "string"
+      },
+      {
+        "key": "client_authentication",
+        "value": "body",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "mobile",
+      "value": "01101376550",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Public GET (no token needed)",
+      "item": [
+        {
+          "name": "accounts contact-info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/contact-info",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "contact-info"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "loans contact-info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/loans/api/contact-info",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "loans",
+                "api",
+                "contact-info"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "cards contact-info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/cards/api/contact-info",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "cards",
+                "api",
+                "contact-info"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "accounts build-info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/build-info",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "build-info"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "cards java-version",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/cards/api/java-version",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "cards",
+                "api",
+                "java-version"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST without token (expect 401)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "create"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Salma\",\n    \"email\": \"salma@eazybank.com\",\n    \"mobileNumber\": \"{{mobile}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2 - Create (needs token)",
+      "item": [
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "create"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Salma\",\n    \"email\": \"salma@eazybank.com\",\n    \"mobileNumber\": \"{{mobile}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Create Card",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/cards/api/create?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "cards",
+                "api",
+                "create"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Loan",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/loans/api/create?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "loans",
+                "api",
+                "create"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3 - Read",
+      "item": [
+        {
+          "name": "Fetch Customer Details (accounts + cards + loans)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/fetchCustomerDetails?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "fetchCustomerDetails"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch Account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/fetch?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "fetch"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch Card",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/cards/api/fetch?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "cards",
+                "api",
+                "fetch"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch Loan",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/loans/api/fetch?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "loans",
+                "api",
+                "fetch"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4 - Delete (needs token)",
+      "item": [
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/accounts/api/delete?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "accounts",
+                "api",
+                "delete"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Card",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/cards/api/delete?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "cards",
+                "api",
+                "delete"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Loan",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8072/eazybank/loans/api/delete?mobileNumber={{mobile}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8072",
+              "path": [
+                "eazybank",
+                "loans",
+                "api",
+                "delete"
+              ],
+              "query": [
+                {
+                  "key": "mobileNumber",
+                  "value": "{{mobile}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

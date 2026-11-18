@@ -11,10 +11,11 @@
 > The original work is licensed under the Apache License 2.0 (see [LICENSE](LICENSE)), and this copy keeps that license.
 >
 > **Changes made in this copy** (by Salma, for learning and presentation purposes only):
-> - Replaced the sample author/contact names in code, configuration, and the Postman collection with `Salma`, and sample emails with `salma@eazybank.com`.
+> - Kept only **Section 17** (Kubernetes + Helm) and removed the other course sections; see [`section_17/`](section_17). Its Postman collection is [`section_17/EazyBank-Section17.postman_collection.json`](section_17/EazyBank-Section17.postman_collection.json).
+> - Replaced the sample author/contact names in code and configuration with `Salma`, and sample emails with `salma@eazybank.com`.
 > - Replaced sample mobile numbers with `01101376526`, and relaxed the mobile number validation from exactly 10 digits to 10 or 11 digits (`[0-9]{10,11}`).
 > - Changed the Docker image prefix from `eazybytes/` to `salmamar/` (Jib config, Docker Compose, Kubernetes manifests, Helm charts), and rebuilt the vendored Helm chart dependencies.
-> - Moved the Config Server files into this repo's [`config/`](config) folder; every configserver reads them via `search-paths: config` (original: [eazybytes/eazybytes-config](https://github.com/eazybytes/eazybytes-config)).
+> - Moved the Config Server files into this repo's [`config/`](config) folder; the configserver reads them via `search-paths: config` (original: [eazybytes/eazybytes-config](https://github.com/eazybytes/eazybytes-config)).
 >
 > هذا المستودع **تعليمي**: نسخة شخصية للتعلم من كورس EazyBytes، والكود الأصلي ملك أصحابه، ومذكور مصدره أعلاه بكل أمانة.
 
