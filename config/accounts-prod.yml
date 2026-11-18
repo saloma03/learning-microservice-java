@@ -1,0 +1,11 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Hey, welcome to EazyBank accounts related prod APIs"
+  contactDetails:
+    name: "Salma - Product Owner"
+    email: "{cipher}f88754f73e8f0eb12ce27c7097ffe77b101b1b3e503ad084a74dba0c778a14dd010ba259c84b55a610280092d64cc46b"
+  onCallSupport:
+    - (453) 392-4829
+    - (236) 203-0384
